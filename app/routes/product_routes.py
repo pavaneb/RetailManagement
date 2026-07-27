@@ -158,3 +158,24 @@ def edit_product(product_id):
         product=product,
         suppliers=suppliers
     )
+
+# -----------------------------
+# Delete Product
+# -----------------------------
+@product_bp.route("/delete_product/<int:product_id>")
+def delete_product(product_id):
+
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        DELETE FROM Product
+        WHERE product_id = %s
+    """, (product_id,))
+
+    connection.commit()
+
+    cursor.close()
+    connection.close()
+
+    return redirect(url_for("product.products"))
