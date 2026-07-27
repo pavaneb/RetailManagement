@@ -23,6 +23,27 @@
 
     </div>
 
+    <form method="GET"
+      action="{{ url_for('product.products') }}"
+      class="row mb-3">
+
+    <div class="col-md-10">
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search by Product, Category or Supplier..."
+            value="{{ search }}">
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-success w-100">
+            🔍 Search
+        </button>
+    </div>
+
+</form>
+
     <table class="table table-bordered table-striped">
 
         <thead class="table-dark">

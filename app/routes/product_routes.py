@@ -13,7 +13,9 @@ def products():
     connection = get_connection()
     cursor = connection.cursor(dictionary=True)
 
-    cursor.execute("""
+    search = request.args.get("search", "")
+
+    query = """
         SELECT
             p.product_id,
             p.product_name,
@@ -23,16 +25,32 @@ def products():
             s.supplier_name
         FROM Product p
         JOIN Supplier s
-            ON p.supplier_id = s.supplier_id
-    """)
+        ON p.supplier_id = s.supplier_id
+    """
+
+    values = ()
+
+    if search:
+        query += """
+        WHERE
+            p.product_name LIKE %s
+            OR p.category LIKE %s
+            OR s.supplier_name LIKE %s
+        """
+        values = (f"%{search}%", f"%{search}%", f"%{search}%")
+
+    cursor.execute(query, values)
 
     products = cursor.fetchall()
 
     cursor.close()
     connection.close()
 
-    return render_template("products.html", products=products)
-
+    return render_template(
+        "products.html",
+        products=products,
+        search=search
+    )
 
 # -----------------------------
 # Add Product
