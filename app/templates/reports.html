@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Reports</title>
 
@@ -12,16 +17,63 @@
 
 <body class="bg-light">
 
+<!-- Navigation Bar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand"
+           href="{{ url_for('home') }}">
+            🛍 Retail Management
+        </a>
+
+        <div class="navbar-nav">
+
+            <a class="nav-link"
+               href="{{ url_for('home') }}">
+                🏠 Dashboard
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('product.products') }}">
+                📦 Products
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('customer.customers') }}">
+                👥 Customers
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('supplier.suppliers') }}">
+                🚚 Suppliers
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('sales.sales') }}">
+                💰 Sales
+            </a>
+
+            <a class="nav-link active"
+               href="{{ url_for('report.reports') }}">
+                📊 Reports
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- Main Content -->
+
 <div class="container mt-5">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
 
         <h2>📊 Reports</h2>
-
-        <a href="{{ url_for('home') }}"
-           class="btn btn-secondary">
-            ← Dashboard
-        </a>
 
     </div>
 

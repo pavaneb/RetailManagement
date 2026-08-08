@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>
         {% if product %}
@@ -10,21 +16,88 @@
         {% endif %}
     </title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
 </head>
 
 <body class="bg-light">
 
+<!-- Navigation Bar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand"
+           href="{{ url_for('home') }}">
+            🛍 Retail Management
+        </a>
+
+        <div class="navbar-nav">
+
+            <a class="nav-link"
+               href="{{ url_for('home') }}">
+                🏠 Dashboard
+            </a>
+
+            <a class="nav-link active"
+               href="{{ url_for('product.products') }}">
+                📦 Products
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('customer.customers') }}">
+                👥 Customers
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('supplier.suppliers') }}">
+                🚚 Suppliers
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('sales.sales') }}">
+                💰 Sales
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('report.reports') }}">
+                📊 Reports
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- Main Content -->
+
 <div class="container mt-5">
 
-    <h2 class="mb-4">
-        {% if product %}
-            ✏ Edit Product
-        {% else %}
-            ➕ Add Product
-        {% endif %}
-    </h2>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>
+            {% if product %}
+                ✏ Edit Product
+            {% else %}
+                ➕ Add Product
+            {% endif %}
+        </h2>
+
+        <a href="{{ url_for('product.products') }}"
+           class="btn btn-secondary">
+
+            ← Back to Products
+
+        </a>
+
+    </div>
+
+
+    <!-- Product Form -->
 
     <form method="POST"
           action="{% if product %}
@@ -34,7 +107,10 @@
                   {% endif %}">
 
         <div class="mb-3">
-            <label class="form-label">Product Name</label>
+
+            <label class="form-label">
+                Product Name
+            </label>
 
             <input
                 type="text"
@@ -42,10 +118,15 @@
                 class="form-control"
                 value="{{ product.product_name if product else '' }}"
                 required>
+
         </div>
 
+
         <div class="mb-3">
-            <label class="form-label">Category</label>
+
+            <label class="form-label">
+                Category
+            </label>
 
             <input
                 type="text"
@@ -53,10 +134,15 @@
                 class="form-control"
                 value="{{ product.category if product else '' }}"
                 required>
+
         </div>
 
+
         <div class="mb-3">
-            <label class="form-label">Price</label>
+
+            <label class="form-label">
+                Price
+            </label>
 
             <input
                 type="number"
@@ -65,10 +151,15 @@
                 class="form-control"
                 value="{{ product.price if product else '' }}"
                 required>
+
         </div>
 
+
         <div class="mb-3">
-            <label class="form-label">Stock Quantity</label>
+
+            <label class="form-label">
+                Stock Quantity
+            </label>
 
             <input
                 type="number"
@@ -76,15 +167,23 @@
                 class="form-control"
                 value="{{ product.stock_quantity if product else '' }}"
                 required>
+
         </div>
+
 
         <div class="mb-3">
 
-            <label class="form-label">Supplier</label>
+            <label class="form-label">
+                Supplier
+            </label>
 
-            <select name="supplier_id" class="form-select" required>
+            <select name="supplier_id"
+                    class="form-select"
+                    required>
 
-                <option value="">Select Supplier</option>
+                <option value="">
+                    Select Supplier
+                </option>
 
                 {% for supplier in suppliers %}
 
@@ -94,7 +193,9 @@
                         selected
                     {% endif %}
                 >
+
                     {{ supplier.supplier_name }}
+
                 </option>
 
                 {% endfor %}
@@ -103,7 +204,9 @@
 
         </div>
 
-        <button type="submit" class="btn btn-success">
+
+        <button type="submit"
+                class="btn btn-success">
 
             {% if product %}
                 Update Product
@@ -113,9 +216,12 @@
 
         </button>
 
+
         <a href="{{ url_for('product.products') }}"
            class="btn btn-secondary">
+
             Cancel
+
         </a>
 
     </form>
@@ -123,4 +229,5 @@
 </div>
 
 </body>
+
 </html>
