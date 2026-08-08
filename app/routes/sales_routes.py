@@ -13,7 +13,9 @@ def sales():
     connection = get_connection()
     cursor = connection.cursor(dictionary=True)
 
-    cursor.execute("""
+    search = request.args.get("search", "")
+
+    query = """
         SELECT
             s.sale_id,
             c.customer_name,
@@ -32,9 +34,27 @@ def sales():
 
         LEFT JOIN Product p
             ON s.product_id = p.product_id
+    """
 
-        ORDER BY s.sale_id DESC
-    """)
+    values = ()
+
+    if search:
+        query += """
+        WHERE
+            c.customer_name LIKE %s
+            OR e.employee_name LIKE %s
+            OR p.product_name LIKE %s
+        """
+
+        values = (
+            f"%{search}%",
+            f"%{search}%",
+            f"%{search}%"
+        )
+
+    query += " ORDER BY s.sale_id DESC"
+
+    cursor.execute(query, values)
 
     sales = cursor.fetchall()
 
@@ -43,9 +63,9 @@ def sales():
 
     return render_template(
         "sales.html",
-        sales=sales
+        sales=sales,
+        search=search
     )
-
 
 # -----------------------------
 # Add Sale
