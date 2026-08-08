@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Retail Management Dashboard</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
     <style>
 
-        .dashboard-card{
-            transition:0.3s;
-            border-radius:15px;
+        .dashboard-card {
+            transition: 0.3s;
+            border-radius: 15px;
         }
 
-        .dashboard-card:hover{
-            transform:translateY(-8px);
-            box-shadow:0 12px 25px rgba(0,0,0,.2);
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, .2);
+        }
+
+        .count {
+            font-size: 32px;
+            font-weight: bold;
         }
 
     </style>
@@ -35,9 +46,11 @@
         Dashboard
     </p>
 
+
     <div class="row mt-5">
 
         <!-- Products -->
+
         <div class="col-md-4 mb-4">
 
             <a href="{{ url_for('product.products') }}"
@@ -48,7 +61,13 @@
                     <div class="card-body">
 
                         <h3>📦</h3>
+
                         <h5>Products</h5>
+
+                        <div class="count">
+                            {{ product_count }}
+                        </div>
+
                         <p>Manage Products</p>
 
                     </div>
@@ -59,7 +78,9 @@
 
         </div>
 
+
         <!-- Customers -->
+
         <div class="col-md-4 mb-4">
 
             <a href="{{ url_for('customer.customers') }}"
@@ -70,7 +91,13 @@
                     <div class="card-body">
 
                         <h3>👥</h3>
+
                         <h5>Customers</h5>
+
+                        <div class="count">
+                            {{ customer_count }}
+                        </div>
+
                         <p>Manage Customers</p>
 
                     </div>
@@ -81,54 +108,72 @@
 
         </div>
 
+
         <!-- Suppliers -->
+
         <div class="col-md-4 mb-4">
 
             <a href="{{ url_for('supplier.suppliers') }}"
-                class="text-decoration-none text-dark">
+               class="text-decoration-none text-dark">
 
-                    <div class="card shadow text-center dashboard-card">
+                <div class="card shadow text-center dashboard-card">
 
-                        <div class="card-body">
+                    <div class="card-body">
 
-                            <h3>🚚</h3>
-                            <h5>Suppliers</h5>
-                            <p>Manage Suppliers</p>
+                        <h3>🚚</h3>
 
+                        <h5>Suppliers</h5>
+
+                        <div class="count">
+                            {{ supplier_count }}
                         </div>
 
+                        <p>Manage Suppliers</p>
+
                     </div>
+
+                </div>
 
             </a>
 
         </div>
 
+
         <!-- Sales -->
+
         <div class="col-md-6 mb-4">
 
-    <a href="{{ url_for('sales.sales') }}"
-       class="text-decoration-none text-dark">
+            <a href="{{ url_for('sales.sales') }}"
+               class="text-decoration-none text-dark">
 
-        <div class="card shadow text-center dashboard-card">
+                <div class="card shadow text-center dashboard-card">
 
-            <div class="card-body">
+                    <div class="card-body">
 
-                <h3>💰</h3>
-                <h5>Sales</h5>
-                <p>Manage Sales</p>
+                        <h3>💰</h3>
 
-            </div>
+                        <h5>Sales</h5>
+
+                        <div class="count">
+                            {{ sales_count }}
+                        </div>
+
+                        <p>Manage Sales</p>
+
+                    </div>
+
+                </div>
+
+            </a>
 
         </div>
 
-    </a>
-
-</div>
 
         <!-- Reports -->
+
         <div class="col-md-6 mb-4">
 
-            <a href="#"
+            <a href="{{ url_for('report.reports') }}"
                class="text-decoration-none text-dark">
 
                 <div class="card shadow text-center dashboard-card">
@@ -136,7 +181,9 @@
                     <div class="card-body">
 
                         <h3>📊</h3>
+
                         <h5>Reports</h5>
+
                         <p>View Reports</p>
 
                     </div>
@@ -152,4 +199,5 @@
 </div>
 
 </body>
+
 </html>
