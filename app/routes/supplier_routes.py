@@ -40,8 +40,6 @@ def suppliers():
 
     suppliers = cursor.fetchall()
 
-    print(suppliers)
-
     cursor.close()
     connection.close()
 

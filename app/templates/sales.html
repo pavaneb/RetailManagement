@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Sales</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>💰 Sales</h2>
+
+        <a href="{{ url_for('sales.add_sale') }}"
+           class="btn btn-primary">
+
+            + New Sale
+
+        </a>
+
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>Sale ID</th>
+                <th>Customer</th>
+                <th>Employee</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Date</th>
+                <th>Total</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for sale in sales %}
+
+            <tr>
+
+                <td>{{ sale.sale_id }}</td>
+                <td>{{ sale.customer_name }}</td>
+                <td>{{ sale.employee_name }}</td>
+                <td>{{ sale.product_name }}</td>
+                <td>{{ sale.quantity }}</td>
+                <td>{{ sale.sale_date }}</td>
+                <td>₹ {{ sale.total_amount }}</td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+
+</html>
